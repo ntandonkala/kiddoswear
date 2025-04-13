@@ -1,0 +1,470 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <title>KiddosWear</title>
+  <style>
+    
+	body {
+		display: flex;
+		flex-direction: column; 
+		min-height: 100vh; 
+		margin: 0;
+	}
+	header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background: linear-gradient(to right, #32CD32, #228B22); 
+    color: #fff; /* White text for contrast */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+	}
+
+	header h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.5rem; 
+    margin: 0;
+    color: #fff; 
+    text-shadow: 2px 2px #000; 
+	}
+
+	header p {
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #f9f9f9;
+ 	}
+    h1 {
+		margin: 0; 
+	}
+	nav ul li a .products { 
+		display: flex; 
+		flex-wrap: wrap;
+		gap: 20px; padding: 20px;
+	}
+    .products { 
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 20px;
+		padding: 20px;
+	}
+    .product { 
+		border: 1px solid #ccc; 
+		padding: 10px;
+		width: 200px; 
+		text-align: center;
+		box-sizing: border-box;
+	}
+   .product img {
+    width: 150px;
+    height: 150px;
+  	}
+    .cart {
+		margin: 20px; 
+		padding: 10px; 
+		border: 1px solid #ccc;
+		width: 300px;
+	}
+    .cart h2, .products h2 { 
+		text-align: center;
+		font-size: 1.5rem;
+	}
+    .remove-btn {
+		color: red; 
+		cursor: pointer;
+	}
+	button {
+		background-color: #32CD32;
+		color: #FFFFFF;
+		border: none;
+		padding: 10px;
+		cursor: pointer;
+		transition: background-color 0.3s;
+	}
+	button:hover {
+		background-color: #005f00;
+	}
+	.checkout {
+		margin: 20px;
+		padding: 10px;
+		border: 1px solid #ccc;
+		width: 300px;
+		font-size: 0.9rem;
+	}
+	.checkout h2 {
+		text-align: center;
+		font-size: 1.5rem;
+	}
+	form {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	input, textarea, select, button {
+		padding: 10px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		font-size: 1rem;
+		width: 90%;
+		box-sizing: border-box;
+		font-size: 0.9rem;
+	}
+	button {
+		background-color: #32CD32;
+		color: #FFFFFF;
+		border: none;
+		cursor: pointer;
+		padding: 8px;
+	}
+	button:hover {
+		background-color: #005f00;
+	}
+	.cart, .checkout {
+		flex: 1;
+		margin: 10px;
+	}
+	.cart-checkout-container {
+		display: flex; 
+		justify-content: 
+		gap: 20px; 
+		padding: 20px;
+	}
+	#cart, #checkout {
+		flex: 1; 
+		border: 1px solid #ccc; 
+		border-radius: 10px; 
+		padding: 20px; 
+		background-color: #f9f9f9; 
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+		max-height: 400px;
+		overflow-y: auto;
+	}
+
+	#cart h2, #checkout h2 {
+		text-align: center; 
+	}
+	main {
+		flex: 1;
+	}	
+	#products h1 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem; 
+    color: #32CD32; 
+    text-transform: uppercase; 
+    letter-spacing: 1.5px; 
+    text-shadow: 1px 1px #ccc; 
+    margin-bottom: 20px;
+	}
+	footer { 
+		background-color: #32CD32;
+		color: #000000;
+		padding: 20px; 
+		text-align: center;
+        position: static;
+		bottom: 0;
+		width: 100%;		
+	}
+	
+	</style>
+</head>
+<body>
+<header>
+    <img src="logo.jpg" alt="Logo" style="height: 150px;">
+    <div style="text-align: center; flex-grow: 1;">
+        <h1 style="margin: 0; color: #000000;">KiddosWear</h1>
+        <p style="margin: 0; color: white; font-style: italic;">Young and Stylish</p>
+    </div>
+</header>
+<main>
+
+	<section id="products">
+		<h1 style="text-align: center;color: #32CD32;">Our Products</h1>
+		<div class="products">
+			<article class="product">
+				<img src="kiddos_jeans.jpg" alt="Jeans">
+				<h2>Jeans</h2>
+				<p>Price: R250</p>
+				<label for="size">Size:</label>
+				<select id="size-jeans">
+					<option value="S">Small</option>
+					<option value="M">Medium</option>
+					<option value="L">Large</option>
+				</select>
+				<label for="color">Color:</label>
+					<select id="color-jeans">
+					<option value="Blue">Blue</option>
+					<option value="Black">Black</option>
+				</select>
+				<button onclick="addToCart('Jeans', 250, getSelectedOptions('size-jeans', 'color-jeans'))">Add to Cart</button>
+			</article>
+		
+
+			<article class="product">
+				<img src="kiddos_shirt.jpg" alt="Long Sleeve Shirt">
+				<h2>Long Sleeve Shirt</h2>
+				<p>Price: R150</p>
+				<label for="size">Size:</label>
+				<select id="size-Long Sleeve Shirt">
+					<option value="S">Small</option>
+					<option value="M">Medium</option>
+					<option value="L">Large</option>
+				</select>
+				<label for="color">Color:</label>
+				<select id="color-Long Sleeve Shirt">
+					<option value="Blue">Blue</option>
+					<option value="Black">Black</option>
+				</select>
+				<button onclick="addToCart('Long Sleeve Shirt', 150, getSelectedOptions('size-Long Sleeve Shirt', 'color-Long Sleeve Shirt'))">Add to Cart</button>
+			</article>
+
+			<article class="product">
+				<img src="kiddos_red-dress.jpg" alt="Dress Combo">
+				<h2>Dress Combo</h2>
+				<p>Price: R299</p>
+				<label for="size">Size:</label>
+				<select id="size-Dress Combo">
+					<option value="S">Small</option>
+					<option value="M">Medium</option>
+					<option value="L">Large</option>
+				</select>
+				<label for="color">Color:</label>
+				<select id="color-Dress Combo">
+					<option value="Blue">Blue</option>
+					<option value="Red">Red</option>
+				</select>
+				<button onclick="addToCart('Red Dress Combo', 299, getSelectedOptions('size-Dress Combo', 'color-Dress Combo'))">Add to Cart</button>
+			</article>
+	
+			<article class="product">
+				<img src="kiddos_jacket.jpg" alt="Green Jacket">
+				<h2>Jacket</h2>
+				<p>Price: R499</p>
+				<label for="size">Size:</label>
+				<select id="size-Jacket">
+					<option value="S">Small</option>
+					<option value="M">Medium</option>
+					<option value="L">Large</option>
+				</select>
+				<label for="color">Color:</label>
+				<select id="color-Jacket">
+					<option value="Blue">Blue</option>
+					<option value="Green">Green</option>
+				</select>
+				<button onclick="addToCart('Jacket', 499, getSelectedOptions('size-Jacket', 'color-Jacket'))">Add to Cart</button>
+			</article>
+	
+			<article class="product">
+				<img src="kiddos_Dress.jpg" alt="Floral Dress">
+				<h2>Floral Dress</h2>
+				<p>Price: R199</p>
+				<label for="size">Size:</label>
+				<select id="size-Floral Dress">
+					<option value="S">Small</option>
+					<option value="M">Medium</option>
+					<option value="L">Large</option>
+				</select>
+				<label for="color">Color:</label>
+				<select id="color-Floral Dress">
+					<option value="Blue">Blue</option>
+					<option value="Green">Green</option>
+				</select>
+				<button onclick="addToCart('Floral Dress', 199, getSelectedOptions('size-Floral Dress', 'color-Floral Dress'))">Add to Cart</button>
+			</article>
+	
+			<article class="product">
+				<img src="kiddos_shirt1.jpg" alt="Short Sleeve Shirt">
+				<h2>Short Sleeve Shirt</h2>
+				<p>Price: R110</p>
+				<label for="size">Size:</label>
+				<select id="size-Short Sleeve Shirt">
+					<option value="S">Small</option>
+					<option value="M">Medium</option>
+					<option value="L">Large</option>
+				</select>
+				<label for="color">Color:</label>
+				<select id="color-Short Sleeve Shirt">
+					<option value="White">White</option>
+					<option value="Green">Green</option>
+				</select>
+				<button onclick="addToCart('Short Sleeve Shirt', 110, getSelectedOptions('size-Short Sleeve Shirt', 'color-Short Sleeve Shirt'))">Add to Cart</button>
+			</article>
+	
+			<article class="product">
+				<img src="kiddos_girls_boots.jpg" alt="Boots">
+				<h2>Boots</h2>
+				<p>Price: R175</p>
+				<label for="size">Size:</label>
+				<select id="size-Boots">
+					<option value="S">Small</option>
+					<option value="M">Medium</option>
+					<option value="L">Large</option>
+				</select>
+				<label for="color">Color:</label>
+				<select id="color-Boots">
+					<option value="Pink">Pink</option>
+					<option value="Brown">Brown</option>
+				</select>
+				<button onclick="addToCart('Boots', 175, getSelectedOptions('size-Boots', 'color-Boots'))">Add to Cart</button>
+			</article>
+	
+			<article class="product">
+				<img src="kiddos_sneakers.jpg" alt="Sneakers">
+				<h2>Sneakers</h2>
+				<p>Price: R475</p>
+				<label for="size">Size:</label>
+				<select id="size-Sneakers">
+					<option value="S">Small</option>
+					<option value="M">Medium</option>
+					<option value="L">Large</option>
+				</select>
+				<label for="color">Color:</label>
+				<select id="color-Sneakers">
+					<option value="White">White</option>
+					<option value="Black">Black</option>
+				</select>
+				<button onclick="addToCart('Sneakers', 475, getSelectedOptions('size-Sneakers', 'color-Sneakers'))">Add to Cart</button>
+			</article>
+	
+			<article class="product">
+				<img src="kiddos_hat.jpg" alt="Hat">
+				<h2>Hat</h2>
+				<p>Price: R45</p>
+				<label for="size">Size:</label>
+				<select id="size-Hat">
+					<option value="S">Small</option>
+					<option value="M">Medium</option>
+					<option value="L">Large</option>
+				</select>
+				<label for="color">Color:</label>
+				<select id="color-Hat">
+					<option value="Pink">Pink</option>
+					<option value="Green">Green</option>
+				</select>
+				<button onclick="addToCart('Hat', 45, getSelectedOptions('size-Hat', 'color-Hat'))">Add to Cart</button>
+			</article>
+	
+			<article class="product">
+				<img src="kiddos_cap.jpg" alt="Boys Cap">
+				<h2>Boys Cap</h2>
+				<p>Price: 85</p>
+				<label for="size">Size:</label>
+				<select id="size-Boys Cap">
+					<option value="S">Small</option>
+					<option value="M">Medium</option>
+					<option value="L">Large</option>
+				</select>
+				<label for="color">Color:</label>
+				<select id="color-Boys Cap">
+					<option value="Blue">Blue</option>
+					<option value="Green">Green</option>
+				</select>
+				<button onclick="addToCart('Boys Cap', 85, getSelectedOptions('size-Boys Cap', 'color-Boys Cap'))">Add to Cart</button>
+			</article>
+		</div>
+	</section>
+
+	<div class="cart-checkout-container">
+		<section id="cart">
+			<h2>Your Shopping Cart</h2>
+			<ul id="cartItems"></ul>
+			<p>Total: R<span id="cartTotal">0</span></p>
+		</section>
+		<section id="checkout">
+			<h2>Checkout</h2>
+			<form id="checkoutForm">
+				<label for="name">Full Name:</label>
+				<input type="text" id="name" name="name" required><br>
+				<label for="email">Email Address:</label><br>
+				<input type="email" id="email" name="email" required><br>
+				<label for="address">Shipping Address:</label><br>
+				<textarea id="address" name="address" rows="3" required></textarea><br>
+				<label for="payment">Payment Method:</label><br>
+				<select id="payment" name="payment" required>
+					<option value="credit-card">Credit Card</option>
+					<option value="debit-card">Debit Card</option>
+					<option value="cash-on-delivery">Cash on Delivery</option>
+				</select><br><br>
+				<button type="submit">Complete Purchase</button>
+			</form>
+		</section>
+	</div>
+
+</main>
+
+<footer>
+       <p>&copy; 2025 KiddosWear. All rights reserved.</p>   
+</footer>
+
+<script>
+
+    let cart = []; 
+
+    
+    function getSelectedOptions(sizeId, colorId) {
+      const size = document.getElementById(sizeId).value; 
+      const color = document.getElementById(colorId).value; 
+      return { size, color }; 
+    }
+
+    
+    function addToCart(name, price, options = {}) {
+      cart.push({
+        name,
+        price,
+        size: options.size || 'Not specified', 
+        color: options.color || 'Not specified', 
+      });
+      updateCart(); 
+    }
+
+    
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    
+    function updateCart() {
+      const cartItems = document.getElementById('cartItems');
+      const cartTotal = document.getElementById('cartTotal');
+      cartItems.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `${item.name} (Size: ${item.size}, Color: ${item.color}) - R${item.price} 
+                        <span class="remove-btn" onclick="removeFromCart(${index})">[Remove]</span>`;
+        cartItems.appendChild(li);
+        total += item.price;
+      });
+
+      cartTotal.textContent = total.toFixed(2);
+    }
+
+    
+    document.getElementById('checkoutForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const address = document.getElementById('address').value;
+      const payment = document.getElementById('payment').value;
+
+      alert(`Thank you, ${name}! Your order has been placed. Details will be sent to ${email}.`);
+      cart = []; 
+      updateCart(); 
+    });
+
+</script>
+</body>
+</html>
+
+
+
+
+
